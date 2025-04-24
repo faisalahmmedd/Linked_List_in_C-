@@ -1,57 +1,92 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
+
 typedef struct Node node;
+
 struct Node{
 
-    int val;
-    node *next;
+     int number;
+     node* next;
 
 };
 
+void printLinkedList(node* head)
+{
+    node* temp=head;
+
+    if(temp==NULL)
+    {
+        printf("Empty Linked List\n");
+        return;
+    }
+
+    if(temp->next==NULL)
+    {
+        printf("%d\n",temp->number);
+        return;
+    }
 
 
-int main(void) {
+    while(temp!=NULL)
+    {
+        printf("%d-->",temp->number);
 
+        if(temp->next->next==NULL)
+        {
+            printf("%d\n",temp->next->number);
+            return;
+        }
+
+        temp=temp->next;
+
+    }
+
+}
+
+
+int main()
+{
     node* head=NULL;
-    node* tmp=NULL;
+    node* temp=NULL;
 
-    int value;
-    printf("Enter values of the Linked List (enter -1 to end): \n");
+    printf("Enter the values of Linked List (Enter -1 to stop): \n");
+
+    int x;
+
     while(1)
     {
-        scanf("%d",&value);
+        scanf("%d",&x);
 
-        if(value==-1)
+        if(x==-1)
         {
             break;
         }
 
         node* newNode=(node*) malloc(sizeof(node));
 
-        newNode->val=value;
+        newNode->number=x;
         newNode->next=NULL;
 
         if(head==NULL)
         {
             head=newNode;
-            tmp=newNode;
+            temp=newNode;
         }
         else
         {
-            tmp->next=newNode;
-            tmp=newNode;
+            temp->next=newNode;
+            temp=newNode;
         }
     }
 
-    node* temp=head;
+    printLinkedList(head);
 
-    while(temp!=NULL)
-    {
-        printf("%d->",temp->val);
-        temp = temp->next;
-    }
-    printf("NULL\n");
 
-   return 0;
+
+
+
+    free(temp);
+    free(head);
+
+    return 0;
 }
-
