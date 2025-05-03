@@ -37,18 +37,19 @@ node* addNewNode(int val,node* head)
 
 
 
+
     return head;
 
 }
 
-void display(node* head)
+void forwardTraverse(node* head)
 {
     node* temp=head;
-
+    printf("Forward traversal: ");
     while(temp!=NULL)
     {
         if(temp->next==NULL)
-            printf("%d ",temp->data);
+            printf("%d\n",temp->data);
         else
             printf("%d->",temp->data);
         temp=temp->next;
@@ -57,6 +58,33 @@ void display(node* head)
 
     free(temp);
     temp=NULL;
+}
+
+void backwardTraverse(node* tail)
+{
+
+    node* temp=tail;
+    printf("Backward Traversal: ");
+    while(temp!=NULL)
+    {
+        if(temp->prev==NULL)
+        {
+            printf("%d\n",temp->data);
+        }
+        else
+        {
+            printf("%d->",temp->data);
+        }
+
+        temp=temp->prev;
+    }
+
+
+    free(temp);
+
+    temp=NULL;
+
+
 }
 
 int main()
@@ -76,10 +104,26 @@ int main()
 
     }
 
-    display(head);
+    forwardTraverse(head);
+
+    node* tail=NULL;
+
+    node* temp=head;
+
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+
+    tail=temp;
 
 
+    backwardTraverse(tail);
 
+
+    free(head);
+
+    head=NULL;
 
     return 0;
 }
