@@ -51,7 +51,7 @@ void forwardTraverse(node* head)
         if(temp->next==NULL)
             printf("%d\n",temp->data);
         else
-            printf("%d->",temp->data);
+            printf("%d<->",temp->data);
         temp=temp->next;
     }
 
@@ -73,7 +73,7 @@ void backwardTraverse(node* tail)
         }
         else
         {
-            printf("%d->",temp->data);
+            printf("%d<->",temp->data);
         }
 
         temp=temp->prev;
